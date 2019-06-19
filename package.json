@@ -1,15 +1,21 @@
 {
-  "name": "api-server",
-  "version": "0.0.0",
-  "private": true,
+  "name": "federation-demo",
+  "main": "gateway.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start-gateway": "nodemon gateway.js",
+    "start-service-task": "nodemon services/task/index.js",
+    "start-service-user": "nodemon services/user/index.js",
+    "start-services": "concurrently \"npm:start-service-*\"",
+    "postinstall": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "latest",
+    "nodemon": "latest",
+    "concurrently": "latest"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "@apollo/gateway": "latest",
+    "apollo-server": "^2.5.1-alpha.1",
+    "graphql": "latest"
   }
 }
